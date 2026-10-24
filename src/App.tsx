@@ -152,7 +152,7 @@ export default function App() {
             {ranks.flatMap((rank, ri) => filesOnBoard.map((file, fi) => {
               const square = `${file}${rank}` as Square;
               const piece = game.get(square);
-              const isLight = (files.indexOf(file) + rank) % 2 === 1;
+              const isLight = (files.indexOf(file) + rank) % 2 === 0;
               const isLast = lastMove && (lastMove.from === square || lastMove.to === square);
               const target = legalTargets.includes(square);
               return <button key={square} role="gridcell" aria-label={`${square}${piece ? ' ' + piece.color + ' ' + piece.type : ''}`} className={['square', isLight ? 'light' : 'dark', selected === square ? 'selected' : '', isLast ? 'last-move' : ''].filter(Boolean).join(' ')} onClick={() => playSquare(square)}>
